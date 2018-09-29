@@ -1,0 +1,12 @@
+<div class="d-flex border-top <%= shift_border(shift) %> py-4" data-search-name="<%= shift.name %>">
+  <%= link_to team_shift_path(Current.team, shift), class: "h4 #{shift_color(shift)} ml-5 mb-0 mr-auto" do %>
+    <%= fa_icon shift_icon(shift), text: shift.name %>
+  <% end %>
+  <span class="mr-3">
+    Every <%= shift.shift_opening.days.to_sentence %> between <%= l shift.shift_opening.starts_at, format: :time %> and
+    <%= l shift.shift_opening.ends_at, format: :time %>
+  </span>
+  <%= link_to edit_team_shift_path(Current.team, shift), class: "mr-5", title: "Edit" do %>
+    <%= fa_icon "cogs" %>
+  <% end %>
+</div>

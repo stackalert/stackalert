@@ -1,0 +1,19 @@
+.card-profile {
+  .card-header {
+    height: 100px;
+    background-size: cover;
+    h4 {
+      margin-top: 25px;
+      margin-left: 120px;
+    }
+  }
+}
+
+.card-profile-img {
+  width: 100px;
+  margin-top: -100px;
+  margin-bottom: 5px;
+  border: 3px solid #fff;
+  border-radius: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}

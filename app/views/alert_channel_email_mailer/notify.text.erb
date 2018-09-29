@@ -1,0 +1,13 @@
+Hi
+
+<%= @check.name %> triggered the alert <%= @alert_channel.alert.name %>
+The following rule has been reached: <%= @alert_rule.to_s %>
+
+Detail:
+URL: <%= link_to @check.endpoint, @check.endpoint %>
+Warning Threshold: <%= @check.warning_threshold %>ms
+Error Threshold: <%= @check.danger_threshold %>ms
+
+<%= link_to 'View More', team_check_url(@check.team, @check) %>
+
+Anthony from Stack Alert

@@ -1,0 +1,32 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+    - lib/**/*.rake
+  Exclude:
+    - node_modules/**/*
+    - bin/*
+    - db/**/*
+    - lib/tasks/cucumber.rake
+    - config/initializers/secure_headers.rb
+    - vendor/**/*
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - Gemfile
+    - Rakefile

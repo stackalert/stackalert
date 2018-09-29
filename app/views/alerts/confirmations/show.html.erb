@@ -1,0 +1,13 @@
+<div class="session mx-auto text-center">
+  <%= link_to root_url(subdomain: :www), class: 'app-brand mb-5' do %>
+    <%= image_tag 'stackalert-logo.svg', alt: 'brand' %>
+  <% end %>
+
+  <div class="mb-5">
+    <p>The Alert email has been successfully confirmed.</p>
+  </div>
+
+  <footer class="screen-login">
+    <%= link_to 'Go to App', root_url(subdomain: 'dashboard'), class: 'text-muted' %>
+  </footer>
+</div>

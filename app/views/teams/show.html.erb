@@ -1,0 +1,33 @@
+<%= content_for(:title) {"Team"} %>
+<%= content_for(:description) {"Show Team"} %>
+
+<%= render 'layout', team: @team do %>
+  <h4 class="mb-3">Last 5 Pings</h4>
+  <ul class="mb-3 list-group list-group-flush">
+    <% policy_scope(CheckPing).last(5).each do |check_ping| %>
+      <li class="list-group-item">
+        <%= link_to check_ping.check.name, team_check_path(Current.team, check_ping.check) %>
+        <span class="float-right"><%= check_ping.total_time %>ms</span>
+      </li>
+    <% end %>
+  </ul>
+
+  <h4 class="mb-3">Last 5 Notifications</h4>
+  <ul class="mb-3 list-group list-group-flush">
+    <% policy_scope(AlertEvent).last(5).each do |alert_event| %>
+      <li class="list-group-item">
+        <%= link_to alert_event.alert_channel.alert.name, team_check_path(Current.team, alert_event.alert_channel.alert.alert) %>
+        <span class="float-right"><%= alert_event.check_endpoint %></span>
+      </li>
+    <% end %>
+  </ul>
+  <h4 class="mb-3">Last 5 Incidents</h4>
+  <ul class="mb-3 list-group list-group-flush">
+    <% policy_scope(StatusPageIncident).last(5).each do |status_page_incident| %>
+      <li class="list-group-item">
+        <%= link_to status_page_incident.status_page.name, team_check_path(Current.team, status_page_incident.status_page) %>
+        <span class="float-right"><%= status_page_incident.severity %>ms</span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

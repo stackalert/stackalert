@@ -1,0 +1,17 @@
+<div class="d-flex border-top py-4" data-search-name="<%= team.name %>">
+  <%= image_tag avatar_url(team, default: 'users.svg'), class: "ml-5", height: 25 %>
+  <%= link_to team_checks_path(team), class: "h4 text-muted mr-auto ml-2 mb-0" do %>
+    <%= team.name %>
+  <% end %>
+  <ul class="list-inline list-spaced mr-3 mb-0 d-none d-xl-block">
+    <li class="list-inline-item"><%= fa_icon "cogs", text: team.checks_count %> Checks</li>
+    <li class="list-inline-item"><%= fa_icon "bell", text: team.alerts_count %> Alerts</li>
+    <li class="list-inline-item"><%= fa_icon "calendar", text: team.shifts_count %> Shifts</li>
+    <li class="list-inline-item"><%= fa_icon "users", text: team.team_members_count %> Team Members</li>
+  </ul>
+  <% if policy(team).edit? %>
+    <%= link_to team, class: "mr-5", title: "Edit" do %>
+      <%= fa_icon "cogs" %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+<%= content_for(:title) { "Developer" } %>
+<%= content_for(:description) { "Applications List" } %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8 offset-xl-3 col-xl-5">
+    <div class="card">
+      <div class="alert alert-warning mb-0" role="alert">
+        <h4 class="alert-heading">Developer Application</h4>
+        <hr>
+        <p>
+          Add or remove your application to interact with Stack Alert API
+        </p>
+      </div>
+
+      <ul class="list-inline text-center mt-2 mb-2">
+        <li class="list-inline-item"><%= link_to "Authorized Application", oauth_authorized_applications_path %></li>
+        <li class="list-inline-item"><%= link_to "New Application", new_oauth_application_path, class: 'btn btn-success' %></li>
+      </ul>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Callback URL</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @applications.each do |application| %>
+            <tr>
+              <td><%= link_to application.name, oauth_application_path(application) %></td>
+              <td><%= application.redirect_uri %></td>
+              <td><%= link_to "Edit", edit_oauth_application_path(application), class: 'btn btn-link' %></td>
+              <td><%= render 'delete_form', application: application %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

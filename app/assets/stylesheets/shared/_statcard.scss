@@ -1,0 +1,28 @@
+.statcard-number {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.statcard-desc {
+  font-size: 85%;
+  letter-spacing: .15em;
+  color: lighten($gray-700, 20%);
+  text-transform: uppercase;
+}
+
+
+.statcard-success,
+.statcard-warning,
+.statcard-danger {
+  color: #fff;
+  border-radius: 3px;
+
+  .statcard-number {
+    font-weight: normal;
+    color: inherit;
+  }
+}
+
+.statcard-success { background-color: theme-color("success"); }
+.statcard-warning { background-color: theme-color("warning"); }
+.statcard-danger  { background-color: theme-color("danger"); }

@@ -1,0 +1,66 @@
+<div class="dashhead">
+  <div class="dashhead-select dropdown">
+    <a class="h4 nounderline text-dark dropdown-toggle"
+       href="#"
+       id="dropdownTeam"
+       role="button"
+       data-toggle="dropdown"
+       aria-haspopup="true"
+       aria-expanded="false">
+      <% if Current.team.present? %>
+        <% cache Current.team do %>
+          <%= image_tag avatar_url(Current.team, default: 'users.svg'), height: 25 %>
+          <%= Current.team.name %>
+        <% end %>
+      <% else %>
+        Stack Alert
+      <% end %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownTeam">
+      <p class="h4 ml-4">Switch Team</p>
+      <div class="dropdown-divider"></div>
+      <% cache ['header', Current.user.teams] do %>
+        <% Current.user.teams.each do |team| %>
+          <% cache ['header', team] do %>
+            <%= link_to team_checks_path(team), class: "dropdown-item" do %>
+              <%= image_tag avatar_url(team, default: 'users.svg'), height: 25 %>
+              <%= team.name %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+      <%= link_to new_team_path, class: "dropdown-item" do %>
+        <%= fa_icon "plus", text: "Add a new Team" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="dashhead-titles d-none d-md-inline-block">
+    <h3 class="dashhead-title"><%= title(yield :title) %></h3>
+    <h6 class="dashhead-subtitle"><%= description(yield :description) %></h6>
+  </div>
+
+  <div class="dashhead-toolbar">
+    <span class="dashhead-toolbar-divider"></span>
+    <div class="dashhead-toolbar-item dropdown">
+      <% cache ['header', Current.user] do %>
+        <a class="nounderline px-4" href="#" id="dropdownProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag avatar_url(Current.user, default: 'user.svg'), class: "rounded-circle", height: 30 %>
+        </a>
+      <% end %>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownProfile">
+        <%= link_to edit_user_path, class: "dropdown-item" do %>
+          <%= fa_icon "user", text: "User Settings" %>
+        <% end %>
+        <%#= link_to oauth_applications_path, class: "dropdown-item" do %>
+          <%#= fa_icon "laptop", text: "Developer" %>
+        <%# end %>
+        <%= link_to sign_out_path, class: "dropdown-item" do %>
+          <%= fa_icon "sign-out", text: "Log Out" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hr-divider mb-3"></div>

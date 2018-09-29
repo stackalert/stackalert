@@ -1,0 +1,8 @@
+<%= @alert_channel.alert.name %>!
+
+You can confirm the alert email through the button below:
+<%= link_to 'Confirm the alert email', confirmation_alert_channels_url(confirmation_token: @token) %>
+
+If you didn't request this change, you can ignore this email or contact us by replying to this email.
+
+Anthony from Stack Alert

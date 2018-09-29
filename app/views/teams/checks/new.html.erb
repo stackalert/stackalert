@@ -1,0 +1,33 @@
+<%= content_for(:title) { "Checks" } %>
+<%= content_for(:description) { "Add a new Check" } %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8 offset-xl-3 col-xl-5">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="mb-0"><%= fa_icon "plus-square", text: "Create Manually" %></h3>
+      </div>
+      <div class="create-check">
+        <%= render "form" %>
+      </div>
+      <div class="card-header">
+        <h3 class="mb-0"><%= fa_icon "plus-square", text: "Use pre-configured Check" %></h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <% policy_scope(CheckConfiguration).each do |check_configuration| %>
+            <%= button_to team_check_configurations_path(Current.team),
+                          method: :post,
+                          remote: true,
+                          class: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
+                          params: {id: check_configuration.id} do %>
+              <%= image_tag "check_configurations/#{check_configuration.name}.svg", height: 30 %>
+              <%= check_configuration.name %>
+              <span class="badge badge-success p-2">Install</span>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

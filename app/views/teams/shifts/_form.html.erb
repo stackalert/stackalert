@@ -1,0 +1,16 @@
+<div class="card-body">
+  <%= simple_form_for [Current.team, @shift], remote: true do |f| %>
+    <%= f.input :name %>
+    <%= f.association :alert, collection: policy_scope(Alert) %>
+
+    <%= f.simple_fields_for :shift_opening do |shift_opening| %>
+      <%= shift_opening.input :days, collection: Date::DAYNAMES, include_blank: false, include_hidden: false, input_html: { multiple: true } %>
+      <%= shift_opening.input :starts_at, as: :time %>
+      <%= shift_opening.input :ends_at, as: :time %>
+    <% end %>
+    <%= f.button :submit %>
+    <%= link_to :back, class: "btn btn-danger float-right mr-2" do %>
+      <%= fa_icon "times", text: "Cancel" %>
+    <% end %>
+  <% end %>
+</div>

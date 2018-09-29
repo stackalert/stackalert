@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="offset-lg-2 col-lg-8">
+      <div class="card card-profile">
+        <div class="card-header">
+          <h4 class="font-weight-bold">
+            <%= team.name %>
+            <% if policy(team).edit? %>
+              <%= link_to edit_team_path(team), class: "btn btn-outline-secondary float-right" do %>
+                <%= fa_icon "cogs", text: "Edit" %>
+              <% end %>
+            <% end %>
+          </h4>
+        </div>
+        <div class="card-body">
+          <%= image_tag avatar_url(team, default: 'users.svg'), class: "card-profile-img" %>
+          <div class="row">
+            <div class="col-lg-2">
+              <ul class="list-unstyled">
+                <h5>Summary</h5>
+                <li class="mt-2">
+                  <%= fa_icon "cogs", text: team.checks_count %> Checks
+                </li>
+                <li class="mt-2">
+                  <%= fa_icon "bell", text: team.alerts_count %> Alerts
+                </li>
+                <li class="mt-2">
+                  <%= fa_icon "calendar", text: team.shifts_count %> Shifts
+                </li>
+                <hr/>
+<!--                <li class="mt-2">-->
+                  <%#= active_link_to team_users_path(Current.team) do %>
+<!--                    <%#= fa_icon "users", text: team.team_members.count %> Team Members-->
+                  <%# end %>
+<!--                </li>-->
+                <li class="mt-2">
+                  <%= active_link_to team_identities_path(Current.team) do %>
+                    <%= fa_icon "rocket", text: team.team_identities.count %> Integrations
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-10">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

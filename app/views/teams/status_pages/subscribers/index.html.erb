@@ -1,0 +1,20 @@
+<%= content_for(:title) {"Status Page"} %>
+<%= content_for(:description) {"Show your Subscribers"} %>
+
+<%= render layout: 'teams/status_pages/layout', locals: {status_page: @status_page} do %>
+  <h4>Subscribers</h4>
+  <table class="table table-striped">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% policy_scope(StatusPageSubscriber).each do |status_page_subscriber| %>
+      <tr>
+        <td><%= status_page_subscriber.email %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

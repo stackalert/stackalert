@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="offset-lg-2 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-link d-flex mx-5 mb-4 mt-4">
+        <h4 class="mr-auto font-weight-bold"><%= alert.name %></h4>
+        <% if policy(alert).edit? %>
+          <%= link_to edit_team_alert_path(Current.team, alert), class: "btn btn-outline-secondary float-right" do %>
+            <%= fa_icon "cogs", text: "Edit" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="card-body border-top">
+        <div class="row">
+          <div class="col-lg-2">
+            <h4 class="mt-4">Summary</h4>
+            <ul class="mt-4 list-unstyled">
+              <% alert.alert_channels.each do |alert_channel| %>
+                <%= render "teams/alerts/#{alert_channel.type.underscore}", alert_channel: alert_channel %>
+              <% end %>
+            </ul>
+            <hr />
+            <%= render partial: "teams/alerts/alert_rule", collection: alert.alert_rules %>
+            <hr/>
+            <%= link_to :back, class: "btn btn-primary" do %>
+              <%= fa_icon "step-backward", text: "Back" %>
+            <% end %>
+            <% if policy(alert).destroy? %>
+              <h4 class="mt-4 text-danger">Danger Zone</h4>
+              <%= link_to team_alert_path(Current.team, alert),
+                          data: {confirm: "Are you sure you want to delete '#{alert.name}'?"},
+                          class: "btn btn-danger",
+                          remote: true,
+                          method: :delete do %>
+                <%= fa_icon "trash", text: "Delete" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-lg-10">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

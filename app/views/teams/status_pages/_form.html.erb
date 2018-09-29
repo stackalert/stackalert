@@ -1,0 +1,12 @@
+<div class="card-body">
+  <%= simple_form_for @status_page, url: team_status_page_path(Current.team), remote: true do |f| %>
+    <%= f.input :title %>
+    <%= f.association :checks, collection: policy_scope(Check) %>
+    <%= f.input :header, as: :trix_editor %>
+    <%= f.input :footer, as: :trix_editor %>
+    <%= f.button :submit %>
+    <%= link_to :back, class: "btn btn-danger float-right mr-2" do %>
+      <%= fa_icon "times", text: "Cancel" %>
+    <% end %>
+  <% end %>
+</div>

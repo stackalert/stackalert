@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#narbarContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <%= link_to root_path, class: "navbar-brand text-justify" do %>
+      <%= image_tag "brand.svg", height: 30 %>
+      Stack Alert
+    <% end %>
+
+    <div class="collapse navbar-collapse" id="narbarContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item d-block d-lg-none">
+          <%= link_to "Sign Up", page_path('sign-up'), class: "nav-link btn btn-success" %>
+        </li>
+      </ul>
+    </div>
+    <ul class="navbar-nav">
+      <% if Current.user.present? %>
+        <li class="nav-item">
+          <%= link_to "Go to App", go_to_app_path, class: "nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Log In", page_path("sign-in"), class: "nav-link" %>
+        </li>
+        <div class="vertical-divider mr-2"></div>
+        <li class="nav-item d-none d-lg-block">
+          <%= link_to "Sign Up", page_path("sign-up"), class: "btn btn-success" %>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+</nav>

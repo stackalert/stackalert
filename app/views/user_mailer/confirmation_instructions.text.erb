@@ -1,0 +1,8 @@
+Hi <%= @user.name %>!
+
+You can confirm your new email address by clicking this link:
+<%= link_to 'Confirm your email', confirmation_users_url(confirmation_token: @token) %>
+
+If you didn't request this change, you can ignore this email or contact us by replying to this email.
+
+Anthony from Stack Alert

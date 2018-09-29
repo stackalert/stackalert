@@ -1,0 +1,14 @@
+<div class="card-body">
+  <%= simple_form_for [Current.team, @check], remote: true do |f| %>
+    <%= f.input :name %>
+    <%= f.input :endpoint, as: :url %>
+    <%= f.input :every, input_html: { min: 1, max: 60 } %>
+    <%= f.input :warning_threshold, input_html: { min: 10, max: 10_000 } %>
+    <%= f.input :danger_threshold, input_html: { min: 10, max: 10_000 } %>
+    <%= f.association :alerts, collection: policy_scope(Alert) %>
+    <%= f.button :submit %>
+    <%= link_to :back, class: "btn btn-danger float-right mr-2" do %>
+      <%= fa_icon "times", text: "Cancel" %>
+    <% end %>
+  <% end %>
+</div>

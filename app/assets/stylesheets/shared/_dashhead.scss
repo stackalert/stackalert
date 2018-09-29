@@ -1,0 +1,57 @@
+.dashhead {
+  @include clearfix;
+}
+
+.dashhead-select {
+  padding: 16px 0px;
+  float: left;
+  margin-right: 20px;
+  border-right: $dashhead-toolbar-divider-bg solid 1px;
+  a {
+    padding: 16px 20px;
+  }
+  .dropdown-menu {
+    width: 250px;
+  }
+}
+
+.dashhead-titles {
+  float: left;
+}
+
+.dashhead-title {
+  margin-top: 0;
+}
+
+.dashhead-subtitle {
+  margin-top: 0;
+  margin-bottom: ($spacer-y * .25);
+  font-weight: normal;
+  font-size: 85%;
+  color: $dashhead-subtitle-color;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dashhead-toolbar {
+  margin-left: 0;
+  margin-top: 0;
+
+  float: right;
+}
+
+.dashhead-toolbar-divider {
+  float: left;
+  width: 1px;
+  height: 60px;
+  background-color: $dashhead-toolbar-divider-bg;
+}
+
+.dashhead-toolbar-item {
+  float: left;
+  padding-top: 15px;
+  a {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}

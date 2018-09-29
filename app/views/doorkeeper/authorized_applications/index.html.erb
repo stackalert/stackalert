@@ -1,0 +1,31 @@
+<%= content_for(:title) {"Developer"} %>
+<%= content_for(:description) {"Authorized Applications List"} %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8 offset-xl-3 col-xl-5">
+    <div class="card">
+      <ul class="list-inline text-center mt-2 mb-2">
+        <li class="list-inline-item"><%= link_to "Authorized Application", oauth_authorized_applications_path %></li>
+        <li class="list-inline-item"><%= link_to "New Application", new_oauth_application_path, class: 'btn btn-success' %></li>
+      </ul>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th><%= t('doorkeeper.authorized_applications.index.application') %></th>
+          <th><%= t('doorkeeper.authorized_applications.index.created_at') %></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @applications.each do |application| %>
+            <tr>
+              <td><%= application.name %></td>
+              <td><%= application.created_at.strftime(t('doorkeeper.authorized_applications.index.date_format')) %></td>
+              <td><%= render 'delete_form', application: application %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

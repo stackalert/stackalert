@@ -1,0 +1,25 @@
+<%= content_for(:title) {"Alerts"} %>
+<%= content_for(:description) {"List all your Team Alerts"} %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-link d-flex mx-5 mb-4 mt-4">
+        <h4 class="mr-auto font-weight-bold"><%= Current.team.name %> Alerts</h4>
+        <% if policy(Alert).new? %>
+          <%= link_to new_team_alert_path(Current.team), class: "btn btn-outline-secondary float-right" do %>
+            <%= fa_icon "plus", text: "Add new Alert" %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= cache @alerts do %>
+        <%= render(partial: 'alert', collection: @alerts, cached: true) || content_tag("div", class: "text-center p-4 border-top") do %>
+          No Alert yet on <%= Current.team.name %>
+          <% if policy(Alert).new? %>
+            , <%= link_to "Add One", new_team_alert_path(Current.team) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

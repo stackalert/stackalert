@@ -1,0 +1,17 @@
+.hr-divider {
+  position: relative;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: $hr-divider-before-bg; // #eee;
+  }
+}

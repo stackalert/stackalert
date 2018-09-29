@@ -1,0 +1,29 @@
+<%= content_for(:title) {"Checks"} %>
+<%= content_for(:description) {"List all your Team Checks"} %>
+
+<div class="row" data-team-id="<%= Current.team.id %>">
+  <div class="offset-lg-2 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-link d-flex mx-5 mb-4 mt-4">
+        <h4 class="mr-auto font-weight-bold"><%= Current.team.name %> Checks</h4>
+        <% if policy(Check).new? %>
+          <%= link_to new_team_check_path(Current.team), class: "btn btn-outline-secondary float-right" do %>
+            <%= fa_icon "plus", text: "Add new Check" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="card-search border-top py-2 h5 mb-0">
+        <%= fa_icon "search", class: "ml-3 text-muted" %>
+        <%= text_field_tag 'search', nil, class: "ml-3 border-0 w-75", placeholder: 'Jump to a Check...' %>
+      </div>
+      <%= cache @checks do %>
+        <%= render(partial: 'check', collection: @checks, cached: true) || content_tag("div", class: "text-center p-4 border-top") do %>
+          No Check yet on <%= Current.team.name %>
+          <% if policy(Check).new? %>
+            , <%= link_to "Add One", new_team_check_path(Current.team) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

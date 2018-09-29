@@ -1,0 +1,16 @@
+<% %w(16 32 96).each do |s| %>
+  <%= favicon_link_tag "favicon/favicon-#{s}x#{s}.png", rel: 'icon', type: 'image/png', sizes: "#{s}x#{s}" %>
+<% end %>
+
+<% %w(57 60 72 76 114 120 144 152 180).each do |s| %>
+  <%= favicon_link_tag "favicon/apple-icon-#{s}x#{s}.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{s}x#{s}" %>
+<% end %>
+
+<% %w(36 48 72 96 144 192).each do |s| %>
+  <%= favicon_link_tag "favicon/android-icon-#{s}x#{s}.png", rel: 'icon', type: 'image/png', sizes: "#{s}x#{s}" %>
+<% end %>
+
+<meta name="theme-color" content="#ffffff" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/manifest.json" />
+

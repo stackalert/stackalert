@@ -1,0 +1,41 @@
+<nav class="iconav">
+  <%= link_to go_to_app_path, class: "iconav-brand" do %>
+    <%= image_tag "brand-dark.svg", height: 40, class: "iconav-brand-icon" %>
+  <% end %>
+  <% if Current.team.present? %>
+    <div class="iconav-slider">
+      <ul class="nav iconav-nav flex-md-column">
+        <li class="nav-item">
+          <%= active_link_to team_checks_path(Current.team), class: "nav-link", title: "Checks" do %>
+            <%= fa_icon "cogs", class: "fa-1-5x" %>
+            <small class="iconav-nav-label d-md-none">Checks</small>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to team_alerts_path(Current.team), class: "nav-link", title: "Alerts" do %>
+            <%= fa_icon "bell", class: "fa-1-5x" %>
+            <small class="iconav-nav-label d-md-none">Alerts</small>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to team_status_page_path(Current.team), class: "nav-link", title: "Status Page" do %>
+            <%= fa_icon "check", class: "fa-1-5x" %>
+            <small class="iconav-nav-label d-md-none">Status Page</small>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to team_shifts_path(Current.team), class: "nav-link", title: "Shifts" do %>
+            <%= fa_icon "calendar", class: "fa-1-5x" %>
+            <small class="iconav-nav-label d-md-none">Shifts</small>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to Current.team, class: "nav-link", active: [["teams"], ["show", "edit"]], title: "Team" do %>
+            <%= fa_icon "users", class: "fa-1-5x" %>
+            <small class="iconav-nav-label d-md-none">Team</small>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+</nav>

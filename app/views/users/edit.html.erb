@@ -1,0 +1,12 @@
+<%= content_for(:title) { @user.name } %>
+<%= content_for(:description) { "Update your Account" } %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8 offset-xl-3 col-xl-5">
+    <div class="card">
+      <div class="update-user">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<%= content_for(:title) {"Shift"} %>
+<%= content_for(:description) {"Show your Shift"} %>
+
+<%= render layout: 'layout', locals: {shift: @shift} do %>
+  <h4 class="mt-4 ">Alert</h4>
+  <%= cache @shift.alert do %>
+    <%= render partial: "teams/alerts/alert", locals: { alert: @shift.alert } %>
+  <% end %>
+<% end %>

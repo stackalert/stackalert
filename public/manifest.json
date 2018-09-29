@@ -1,0 +1,7 @@
+{
+  "name": "Stack Alert",
+  "short_name": "SA",
+  "start_url": "/teams",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}

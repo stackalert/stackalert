@@ -1,0 +1,28 @@
+<%= content_for(:title) {"Team"} %>
+<%= content_for(:description) {"Show Team Members"} %>
+
+<%= render layout: 'teams/layout', locals: { team: Current.team } do %>
+  <h4>Team Members</h4>
+  <table class="table table-striped">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Avatar</th>
+      <th scope="col">Name</th>
+      <th scope="col">Roles</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= image_tag avatar_url(Current.user, default: 'user.svg'), class: "rounded-circle", height: 30 %></td>
+        <td><%= user.name %></td>
+        <td>
+          <%= user.roles.map(&:name).to_sentence %>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

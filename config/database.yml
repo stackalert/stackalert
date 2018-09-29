@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  schema_search_path: "public"
+  encoding: unicode
+  username: 'postgres'
+  password: 'postgres'
+  host: '127.0.0.1'
+  pool: 5
+
+development:
+  <<: *default
+  database: stackalert_development
+
+test: &test
+  <<: *default
+  database: stackalert_test
+
+cucumber:
+  <<: *test
+
+production:
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>

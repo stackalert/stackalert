@@ -1,0 +1,27 @@
+<%= content_for(:title) {"Status Page"} %>
+<%= content_for(:description) {"Show your Incidents"} %>
+
+<%= render layout: 'teams/status_pages/layout', locals: {status_page: @status_page} do %>
+  <h4>Incidents</h4>
+  <table class="table table-striped">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">Reporter</th>
+      <th scope="col">Body</th>
+      <th scope="col">Severity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% policy_scope(StatusPageIncident).each do |status_page_incident| %>
+      <tr>
+        <td>
+          <%= image_tag avatar_url(status_page_incident.user, default: 'user.svg'), class: "rounded-circle", height: 30 %>
+          <%= status_page_incident.user.name %>
+        </td>
+        <td><%= status_page_incident.body %></td>
+        <td><%= status_page_incident.severity %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

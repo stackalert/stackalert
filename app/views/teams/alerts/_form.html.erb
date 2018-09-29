@@ -1,0 +1,39 @@
+<div class="card-body">
+  <%= simple_form_for [Current.team, @alert], remote: true do |f| %>
+    <%= f.input :name %>
+    <%= f.association :checks, collection: policy_scope(Check) %>
+    <h4 class="border-bottom pb-3">Channels</h4>
+    <div id="alert_channels">
+      <%= f.simple_fields_for :alert_channels do |alert_channel| %>
+        <%= render "alert_channel_fields", f: alert_channel %>
+      <% end %>
+
+      <div class="links border-bottom py-1 my-2">
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to_add_association 'Add Email Channel', f, :alert_channels, class: "dropdown-item",
+                                      wrap_object: Proc.new { |_| AlertChannelEmail.new } %>
+          <%= link_to_add_association 'Add Webhook Channel', f, :alert_channels, class: "dropdown-item",
+                                      wrap_object: Proc.new { |_| AlertChannelEndpoint.new } %>
+        </div>
+        <button class="btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add Channel
+        </button>
+      </div>
+    </div>
+
+    <h4 class="border-bottom pb-3">Rules</h4>
+    <div id="alert_rules">
+      <%= f.simple_fields_for :alert_rules do |alert_rule| %>
+        <%= render "alert_rule_fields", f: alert_rule %>
+      <% end %>
+      <div class="links border-bottom my-2">
+        <%= link_to_add_association 'Add Rule', f, :alert_rules, class: "btn " %>
+      </div>
+    </div>
+
+    <%= f.button :submit %>
+    <%= link_to :back, class: "btn btn-danger float-right mr-2" do %>
+      <%= fa_icon "times", text: "Cancel" %>
+    <% end %>
+  <% end %>
+</div>

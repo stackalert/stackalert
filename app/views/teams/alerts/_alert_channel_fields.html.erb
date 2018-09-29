@@ -1,0 +1,8 @@
+<%= f.input :type, as: :hidden %>
+<% if f.object.type == "AlertChannelEmail" %>
+  <%= render "alert_channel_email_fields", f: f %>
+<% elsif f.object.type == "AlertChannelEndpoint" %>
+  <%= render "alert_channel_endpoint_fields", f: f %>
+<% elsif f.object.type == "AlertChannelSlack" %>
+  <%= render "alert_channel_slack_fields", f: f %>
+<% end %>

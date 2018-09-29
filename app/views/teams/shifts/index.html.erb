@@ -1,0 +1,25 @@
+<%= content_for(:title) {"Shifts"} %>
+<%= content_for(:description) {"List all your Shifts"} %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-link d-flex mx-5 mb-4 mt-4">
+        <h4 class="mr-auto font-weight-bold"><%= Current.team.name %> Shifts</h4>
+        <% if policy(Shift).new? %>
+          <%= link_to new_team_shift_path(Current.team), class: "btn btn-outline-secondary float-right" do %>
+            <%= fa_icon "plus", text: "Add new Shift" %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= cache @shifts do %>
+        <%= render(partial: 'shift', collection: @shifts, cached: true) || content_tag("div", class: "text-center p-4 border-top") do %>
+          No Shift yet on <%= Current.team.name %>
+          <% if policy(Shift).new? %>
+            , <%= link_to "Add One", new_team_shift_path(Current.team) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="card-header">
+  <h3><%= fa_icon "plus-square", text: "Create" %></h3>
+</div>
+<div class="card-body">
+  <%= simple_form_for @application, url: doorkeeper_submit_path(@application), remote: true do |f| %>
+    <%= f.input :name %>
+    <%= f.input :redirect_uri, as: :text, hint: "Use one line per URI." %>
+    <%= f.input :scopes, hint: "Separate scopes with spaces. Leave blank to use the default scopes." %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

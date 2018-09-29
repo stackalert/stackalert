@@ -1,0 +1,29 @@
+<%= content_for(:title) {"Alert"} %>
+<%= content_for(:description) {"Show your Alert"} %>
+
+<%= render layout: 'layout', locals: {alert: @alert} do %>
+  <h4 class="mt-4 ">Checks</h4>
+  <%= cache @alert.checks do %>
+    <%= render partial: "teams/checks/check", collection: @alert.checks, cached: true %>
+  <% end %>
+  <hr/>
+  <h4 class="mt-4">Events</h4>
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Success</th>
+        <th scope="col">Rule</th>
+        <th scope="col">Channel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% policy_scope(AlertEvent).each do |alert_event| %>
+        <tr>
+          <td><%= alert_event.success? %></td>
+          <td><%= alert_event.alert_rule %></td>
+          <td><%= alert_event.alert_channel %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

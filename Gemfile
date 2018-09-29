@@ -1,0 +1,91 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
+end
+
+ruby '2.5.0'
+
+gem 'active_link_to'
+gem 'active_median'
+gem 'ahoy_email'
+gem 'aws-sdk-s3', require: false
+gem 'bootsnap'
+gem 'bootstrap'
+gem 'chartkick'
+gem 'cocoon'
+gem 'curb'
+gem 'doorkeeper'
+gem 'down'
+gem 'font-awesome-rails'
+gem 'friendly_id'
+gem 'gibbon'
+gem 'google-analytics-rails'
+gem 'googlecharts'
+gem 'groupdate'
+gem 'high_voltage'
+gem 'hightop'
+gem 'httparty'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'mailkick'
+gem 'meta-tags'
+gem 'mini_magick'
+gem 'newrelic_rpm'
+gem 'octokit'
+gem 'omniauth'
+gem 'omniauth-bitbucket'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'paper_trail'
+gem 'paranoia'
+gem 'pg', '~> 1.1.3'
+gem 'pg_search'
+gem 'phony_rails'
+gem 'popper_js'
+gem 'public_activity'
+gem 'public_suffix'
+gem 'puma'
+gem 'pundit'
+gem 'rack-cors', require: 'rack/cors'
+gem 'rails', '~> 5.2.0'
+gem 'ranked-model'
+gem 'redcarpet'
+gem 'redis-rails'
+gem 'rolify'
+gem 'sass-rails', '~> 5.0'
+gem 'select2-rails'
+gem 'sentry-raven'
+gem 'serviceworker-rails'
+gem 'sidekiq'
+gem 'simple_form'
+gem 'sinatra'
+gem 'sitemap_generator'
+gem 'slack-ruby-client'
+gem 'tod'
+gem 'turbolinks'
+gem 'twitter'
+gem 'uglifier', '>= 1.3.0'
+gem 'valid_email'
+gem 'validate_url'
+gem 'webpacker'
+gem 'webpush'
+gem 'whois'
+gem 'whois-parser'
+
+group :development, :test do
+  gem 'listen'
+  gem 'pry-byebug'
+end
+
+group :development do
+  gem 'awesome_print'
+  gem 'bundler-audit', require: false
+  gem 'rubocop', require: false, github: 'bbatsov/rubocop'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'web-console'
+end

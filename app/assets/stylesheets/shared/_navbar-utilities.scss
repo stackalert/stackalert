@@ -1,0 +1,9 @@
+.navbar-dark {
+  background-color: theme-color("dark");
+  nav-link {
+    color: $white;
+    &:hover {
+      color: $green;
+    }
+  }
+}

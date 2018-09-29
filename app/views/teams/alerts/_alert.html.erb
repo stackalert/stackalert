@@ -1,0 +1,18 @@
+<div class="d-flex border-top pt-4">
+  <%= link_to team_alert_path(Current.team, alert), class: "h4 ml-5 mb-0 mr-auto" do %>
+    <%= fa_icon "eye", text: alert.name %>
+  <% end %>
+
+  <%= render partial: "teams/alerts/alert_rule", collection: alert.alert_rules %>
+  <% if policy(alert).edit? %>
+    <%= link_to edit_team_alert_path(Current.team, alert), class: "mr-5", title: "Edit" do %>
+      <%= fa_icon "cogs" %>
+    <% end %>
+  <% end %>
+</div>
+
+<ul class="list-unstyled list-spaced ml-5 mb-3 pt-1 mb-0">
+  <% alert.alert_channels.each do |alert_channel| %>
+    <%= render "teams/alerts/#{alert_channel.type.underscore}", alert_channel: alert_channel %>
+  <% end %>
+</ul>

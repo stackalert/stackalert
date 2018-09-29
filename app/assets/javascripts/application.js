@@ -1,0 +1,19 @@
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require select2
+//= require turbolinks
+//= require rails-ujs
+//= require activestorage
+//= require cocoon
+//= require serviceworker-companion
+//= require Chart.bundle
+//= require chartkick
+//= require trix/dist/trix
+
+//= require application/select
+//= require application/progress
+//= require application/cable
+//= require application/header
+//= require application/file-input
+//= require application/search

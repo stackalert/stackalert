@@ -1,0 +1,16 @@
+<%= content_for(:title) {"Status Page"} %>
+<%= content_for(:description) { "Show your Status Page"} %>
+
+<%= render layout: 'layout', locals: { status_page: @status_page } do %>
+  <h4 class="pb-2 border-bottom">Checks</h4>
+  <%= cache @status_page.checks do %>
+    <%= render(partial: 'teams/checks/check', collection: @status_page.checks, cached: true) || content_tag("div", class: "text-center p-4") do %>
+      No Check yet on <%= @status_page.title %>,
+      <%= link_to "Add One", edit_team_status_page_path(Current.team) %>
+    <% end %>
+  <% end %>
+  <h4 class="mt-4 pb-2 border-bottom">Header</h4>
+  <%= raw(@status_page.header).presence || "No Header" %>
+  <h4 class="mt-4 pb-2 border-bottom">Footer</h4>
+  <%= raw(@status_page.footer).presence || "No Footer" %>
+<% end %>

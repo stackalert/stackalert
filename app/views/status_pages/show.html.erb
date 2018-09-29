@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3 mt-5">
+      <h3>
+        <strong><%= @status_page.title %></strong>
+        <span class="text-success">Status</span>
+      </h3>
+      <div class="hr-divider mb-5"></div>
+
+      <% if @status_page.success? %>
+        <div class="card card-outline-success text-center p-4 mb-4">
+          <div class="card-block">
+            <span class="text-success">All system operational!</span>
+          </div>
+        </div>
+      <% end %>
+
+      <%= raw @status_page.header %>
+
+
+      <h4>Be Alerted</h4>
+      <div class="hr-divider mb-4"></div>
+
+      <fieldset class="mb-4">
+        <%= simple_form_for @subscriber, url: status_page_subscribers_path(@status_page) do |f| %>
+          <%= f.input :email, placeholder: 'e.g. john.doe@gmail.com' %>
+          <div class="form-group">
+            <%= f.submit 'Subscribe', class: 'btn btn-primary float-left' %>
+          </div>
+        <% end %>
+      </fieldset>
+
+
+      <h4>Availability</h4>
+      <div class="hr-divider mb-4"></div>
+
+      <div class="row">
+        <% @status_page.checks.each do |check| %>
+          <div class="col-6">
+            <div class="p-3 statcard statcard-<%= check.ping_state %> mb-4">
+              <h3 class="statcard-title"><%= check.name %></h3>
+              <h3 class="statcard-number">
+                <%= check.ping_total_time %>ms
+              </h3>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <h4>Incidents</h4>
+      <div class="hr-divider"></div>
+      <ul class="list-group mb-4">
+        <% @status_page.status_page_incidents.order(created_at: :desc).first(100).each do |incident| %>
+          <li class="list-group-item mb-2">
+            <h5 class="d-flex align-self-start mr-3 badge #{badge_outline_color(incident)}">
+              <%= incident.severity.capitalize %>
+            </h5>
+
+            <div class="media-body">
+              <div class="media-heading">
+                <small class="float-right text-muted">
+                  <%= time_ago_in_words(incident.created_at) %>
+                </small>
+                <h6><%= incident.user.name %></h6>
+              </div>
+              <p><%= incident.body %></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <%= raw @status_page.footer %>
+    </div>
+  </div>
+</div>

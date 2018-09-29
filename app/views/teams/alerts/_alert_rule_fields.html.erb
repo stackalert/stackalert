@@ -1,0 +1,5 @@
+<div class="nested-fields">
+  <%= link_to_remove_association "Remove Alert Rule", f, class: "float-right" %>
+  <%= f.input :name, collection: CheckPing.states.keys, include_blank: false %>
+  <%= f.input :threshold %>
+</div>

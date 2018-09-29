@@ -1,0 +1,57 @@
+<div class="row" data-team-id="<%= Current.team.id %>">
+  <div class="offset-lg-2 col-lg-8">
+    <div class="card">
+      <div class="card-link d-flex mx-5 mb-4 mt-4">
+        <h4 class="mr-auto font-weight-bold"><%= check.name %></h4>
+        <% if policy(check).edit? %>
+          <%= link_to edit_team_check_path(Current.team, check), class: "btn btn-outline-secondary float-right" do %>
+            <%= fa_icon "cogs", text: "Edit" %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <%= render "teams/checks/check", check: check %>
+
+      <div class="card-body border-top">
+        <div class="row">
+          <div class="col-lg-2">
+            <h4 class="mt-4">Details</h4>
+            <ul class="list-unstyled">
+              <li class="mt-2">
+                <%= link_to check.endpoint, target: "_blank" do %>
+                  <%= fa_icon "external-link", text: check.endpoint %>
+                <% end %>
+              </li>
+              <li class="mt-2">
+                <%= fa_icon "play", text: "Every #{check.every} minutes" %>
+              </li>
+              <li class="mt-2">
+                <%= fa_icon "exclamation-triangle", text: "#{check.warning_threshold} ms", class: "text-warning" %>
+              </li>
+              <li class="mt-2">
+                <%= fa_icon "minus-circle", text: "#{check.danger_threshold} ms", class: "text-danger" %>
+              </li>
+            </ul>
+            <%= link_to :back, class: "btn btn-primary" do %>
+              <%= fa_icon "step-backward", text: "Back" %>
+            <% end %>
+            <hr />
+            <% if policy(check).destroy? %>
+              <h4 class="mt-4 text-danger">Danger Zone</h4>
+              <%= link_to team_check_path(Current.team, check),
+                          data: {confirm: "Are you sure you want to delete '#{check.name}'?"},
+                          class: "btn btn-danger",
+                          remote: true,
+                         method: :delete do %>
+                <%= fa_icon "trash", text: "Delete" %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-lg-10">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

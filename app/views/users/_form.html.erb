@@ -1,0 +1,43 @@
+<div class="alert alert-warning mb-0" role="alert">
+  <h4 class="alert-heading">Update your Account</h4>
+  <hr>
+  <p>
+    Connect your identities and update your personal details
+  </p>
+</div>
+<div class="card-header">
+  <h3 class="mb-0">
+    <%= fa_icon "plug", text: "Connected Account" %>
+  </h3>
+</div>
+<div class="card-body">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <%= fa_icon "github", text: "Github" %>
+      <% if @user.github? %>
+        <span class="rounded badge-success p-2 float-right">Connected</span>
+      <% else %>
+        <a class="btn btn-primary float-right" href="/auth/github">Log In with Github</a>
+      <% end %>
+    </li>
+    <li class="list-group-item">
+      <%= fa_icon "bitbucket", text: "Bitbucket" %>
+      <% if @user.bitbucket? %>
+        <span class="rounded badge-success p-2 float-right">Connected</span>
+      <% else %>
+        <a class="btn btn-primary float-right" href="/auth/bitbucket">Log In with Bitbucket</a>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div class="card-header">
+  <h3 class="mb-0"><%= fa_icon "pencil", text: "Personal Details" %></h3>
+</div>
+<div class="card-body">
+  <%= simple_form_for @user, url: user_path, remote: true do |f| %>
+    <%= f.input :avatar, label: "Choose Avatar" %>
+    <%= f.input :email %>
+    <%= f.input :name %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

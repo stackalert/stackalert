@@ -1,0 +1,71 @@
+<%= content_for(:title) {"Check"} %>
+<%= content_for(:description) {"Show your check with ping history"} %>
+
+<%= render layout: 'layout', locals: { check: @check } do %>
+  <h4 class="mt-4 ">Alerts</h4>
+  <%= cache @check.alerts do %>
+    <%= render(partial: "teams/alerts/alert", collection: @check.alerts, cached: true) || content_tag("div", class: "text-center p-4") do %>
+      No Alert yet on <%= @check.name %>,
+      <%= link_to "Add One", edit_team_check_path(Current.team, @check) %>
+    <% end %>
+  <% end %>
+  <hr />
+  <div class="row mt-4">
+    <div class="col-lg-6">
+      <% if @check.check_domain.present? %>
+        <h4>
+          <%= fa_icon "shield", text: "SSL Certificate", class: "text-#{check_certificate_color(@check.check_certificate)}" %>
+        </h4>
+        <h5 class="text-<%= check_certificate_color(@check.check_certificate) %>">
+          <% if @check.check_certificate.expired? %>
+            Expired
+          <% else %>
+            Expires in <%= @check.check_certificate.expire_in %> days
+          <% end %>
+        </h5>
+        <ul class="list-unstyled list-spaced">
+          <li>
+            <%= fa_icon "wifi", text: @check.check_certificate.issuer %>
+          </li>
+          <li>
+            <%= fa_icon "clock-o", text: "#{l @check.check_certificate.valid_on} - #{l @check.check_certificate.valid_until}" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <% if @check.check_domain.present? %>
+        <h4>
+          <%= fa_icon "home", text: "Whois", class: "text-#{check_domain_color(@check.check_domain)}" %>
+        </h4>
+        <h5 class="text-<%= check_domain_color(@check.check_domain) %>">
+          <% if @check.check_domain.expired? %>
+            Expired
+          <% else %>
+            Expires in <%= @check.check_domain.expire_in %> days
+          <% end %>
+        </h5>
+        <ul class="list-unstyled list-spaced">
+          <li>
+            <%= fa_icon "wifi", text: @check.check_domain.registrar %>
+          </li>
+          <li>
+            <%= fa_icon "clock-o", text: "#{l @check.check_domain.valid_on} - #{l @check.check_domain.valid_until}" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <hr />
+  <h4 class="mt-4">In Depth</h4>
+  <%= timeline timeline_team_check_charts_path(Current.team, @check),
+               refresh: @check.every.minutes.to_i,
+               legend: false %>
+  <hr />
+  <h4>History</h4>
+  <%= line_chart history_team_check_charts_path(Current.team, @check),
+                 download: "pings.png",
+                 points: false,
+                 legend: false,
+                 refresh: @check.every.minutes.to_i %>
+<% end %>

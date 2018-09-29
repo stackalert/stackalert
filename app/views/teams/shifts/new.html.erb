@@ -1,0 +1,15 @@
+<%= content_for(:title) {"Shift"} %>
+<%= content_for(:description) {"Add a new Shift"} %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8 offset-xl-3 col-xl-5">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="mb-0"><%= fa_icon "plus-square", text: "Create" %></h3>
+      </div>
+      <div class="create-shift">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+.iconav {
+  margin-top: -20px;
+  margin-bottom: 30px;
+  background-color: $iconav-bg;
+  @include media-breakpoint-up(md) {
+    border-right: #eee 1px solid;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: $iconav-width;
+    padding-top: 30px;
+    margin-bottom: 0;
+    overflow-y: auto;
+    -webkit-transform: translate3d(0,0,0);
+  }
+
+  .tooltip {
+    white-space: nowrap;
+  }
+}
+
+.with-iconav > .container,
+.with-iconav > .container-fluid {
+  @include media-breakpoint-up(md) {
+    padding-left: $iconav-width;
+    padding-right: 0;
+  }
+}
+
+.iconav-brand {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+  text-align: center;
+  padding-top: 25px;
+  background-color: $iconav-brand-color;
+  @include media-breakpoint-up(md) {
+    padding-top: 0px;
+    margin-bottom: 10px;
+  }
+  &:hover {
+    color: $iconav-brand-hover-color;
+    text-decoration: none;
+  }
+}
+
+.iconav-brand-icon {
+  font-size: 30px;
+}
+
+.iconav-nav {
+  flex-wrap: nowrap;
+
+  .label {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    z-index: 5;
+    padding: .2em .4em;
+    font-size: 11px;
+    line-height: 1;
+    border-radius: 10px;
+    border: 2px solid $iconav-bg;
+  }
+
+  > .nav-item {
+    float: none;
+    display: inline-block;
+
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+
+    > .nav-link {
+      position: relative;
+      padding: 10px 12px;
+      font-size: 18px;
+      color: $iconav-link-color;
+      text-align: center;
+      border-radius: 0;
+
+      @include media-breakpoint-up(md) {
+        padding: 15px;
+      }
+      &.active {
+        &,
+        &:focus,
+        &:hover,
+        &:active {
+          color: $iconav-link-active-color;
+          background-color: $iconav-link-active-bg;
+
+          .label {
+            border-color: $iconav-link-active-bg;
+          }
+        }
+      }
+
+      @include media-breakpoint-up(md) {
+        margin-left: 0;
+
+        > .nav-link {
+          border-top: 1px solid $iconav-link-border;
+          border-right: 0;
+        }
+      }
+    }
+
+    > .nav-link > img {
+      width: 26px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.iconav-nav-label {
+  display: block;
+  font-size: 11px;
+}

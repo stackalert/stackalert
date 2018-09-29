@@ -1,0 +1,11 @@
+<div class="card-body">
+  <%= simple_form_for @team, remote: true do |f| %>
+    <%= f.input :avatar, label: "Choose Avatar" %>
+    <%= f.input :name %>
+    <%= f.input :time_zone, hint: "Where is your team located? If you are decentralized, you can still set a default Time Zone" %>
+    <%= f.button :submit %>
+    <%= link_to :back, class: "btn btn-danger float-right mr-2" do %>
+      <%= fa_icon "times", text: "Cancel" %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "airbnb-base",
+    "prettier"
+  ],
+  "plugins": [
+    "compat",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "settings": {
+    "polyfills": ["fetch"]
+  },
+  "globals": {
+    "HTMLInputElement": true,
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "jQuery": true
+  }
+}

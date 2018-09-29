@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= display_meta_tags site: 'Stack Alert' %>
+    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet" />
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/icons' %>
+    <%= analytics_init if GoogleAnalytics.valid_tracker? %>
+    <script type="text/javascript">
+      window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(Rails.application.credentials.vapid_public_key).bytes %>);
+    </script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js", 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <%= render 'layouts/application/progress' %>
+    <div class="with-iconav">
+      <%= render 'layouts/application/sidebar' %>
+      <div class="container-fluid">
+        <%= render 'layouts/application/header' %>
+        <%= render 'layouts/application/flash' %>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

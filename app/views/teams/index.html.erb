@@ -1,0 +1,22 @@
+<%= content_for(:title) {"Teams"} %>
+<%= content_for(:description) {"List all your Teams"} %>
+
+<div class="row">
+  <div class="offset-lg-2 col-lg-8">
+    <div class="card mb-3">
+      <div class="card-link d-flex mx-5 mb-4 mt-4">
+        <h4 class="mr-auto font-weight-bold">Your Teams</h4>
+        <%= link_to new_team_path, class: "btn btn-outline-secondary float-right" do %>
+          <%= fa_icon "plus", text: "Add new Team" %>
+        <% end %>
+      </div>
+      <div class="card-search border-top py-2 h5 mb-0">
+        <%= fa_icon "search", class: "ml-3 text-muted" %>
+        <%= text_field_tag 'search', nil, class: "ml-3 border-0 w-75", placeholder: 'Jump to a Team...' %>
+      </div>
+      <%= cache @teams do %>
+        <%= render partial: 'team', collection: @teams, cached: true %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+development:
+  adapter: redis
+  url: <%= Rails.application.credentials.development[:redis_url] %>
+  channel_prefix: stack_alert_development
+
+test:
+  adapter: async
+
+production:
+  adapter: redis
+  url: <%= Rails.application.credentials.production[:redis_url] %>
+  channel_prefix: stack_alert_production
