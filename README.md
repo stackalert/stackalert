@@ -1,5 +1,7 @@
 # Stack Alert
 
+![Stack Alert](https://github.com/stackalert/stackalert/raw/master/screenshot.png)
+
 ## Dependencies
 
 - ruby
